@@ -4,3 +4,4 @@ The assumption is that you already have VirtualBox and Vagrant installed on your
   - `vagrant plugin install vagrant-hostmanager`
 - `vagrant up --color`
 - `vagrant ssh`
+- `cd /vagrant`

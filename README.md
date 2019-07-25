@@ -24,3 +24,13 @@ Keep your network traffic within the AWS network; between 2 VPCs and from a VPC 
         }
       }
 ```
+
+# Instructions
+- `git clone https://github.com/shazChaudhry/terraform-aws-privateLink.git`
+- `cd terraform-aws-privateLink`
+- `terraform apply -auto-approve `
+
+
+# Resrouces:
+- https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints-s3.html
+- https://medium.com/tensult/creating-vpc-endpoint-for-amazon-s3-using-terraform-7a15c840d36f
