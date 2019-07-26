@@ -18,14 +18,14 @@ module "producer_public_asg" {
   max_size                  = 1
   desired_capacity          = 1
   wait_for_capacity_timeout = 0
-
-  tags = [
-    {
-      key                 = "Environment"
-      value               = "${var.producer}-public"
-      propagate_at_launch = true
-    },
-  ]
+  # 
+  # tags = [
+  #   {
+  #     key                 = "Environment"
+  #     value               = "${var.producer}-public"
+  #     propagate_at_launch = true
+  #   },
+  # ]
 }
 
 module "producer_private_asg" {

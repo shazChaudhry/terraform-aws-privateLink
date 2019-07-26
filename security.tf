@@ -23,12 +23,16 @@ module "producer_private_security_group" {
   description = "${var.producer} private cluster SG"
   vpc_id      = "${module.producer_vpc.vpc_id}"
 
+  # Only accept ssh connection from public subnet
   ingress_with_source_security_group_id = [
     {
       rule                     = "ssh-tcp"
       source_security_group_id = "${module.producer_public_security_group.this_security_group_id}"
     },
   ]
+  # There is no NAT Gateway and so, instances in private subnet will have no route to internet
+  egress_cidr_blocks  = ["0.0.0.0/0"]
+  egress_rules        = ["all-all"]
 
   tags = {
     Name = "${var.producer}-private-cluster-sg"

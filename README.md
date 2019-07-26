@@ -1,5 +1,5 @@
 # Work in progress
-Keep your network traffic within the AWS network; between 2 VPCs and from a VPC and S3
+Keep your network traffic within the AWS network; between 2 VPCs and from a VPC and S3. This is all achieved by using private links
 
 
 ## Prerequisites

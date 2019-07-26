@@ -3,10 +3,11 @@ module "producer_vpc" {
 
   enable_dns_hostnames             = true
   enable_dns_support               = true
-  enable_nat_gateway               = true
   map_public_ip_on_launch          = true
   enable_dhcp_options              = true
-  single_nat_gateway               = true
+  # No connection to internet from private subnets
+  # single_nat_gateway               = true
+  # enable_nat_gateway               = true
   cidr                             = "10.0.0.0/25"
   azs                              = "${data.aws_availability_zones.all.names}"
   # private_subnets                  = ["10.0.0.0/27", "10.0.0.32/27"]  # AZ a and b
@@ -54,5 +55,18 @@ module "producer_vpc" {
 
   tags = {
     Terraform   = "true"
+  }
+}
+
+# code for the creation of a VPC Endpoint and associating it with VPC route table
+resource "aws_vpc_endpoint" "producer_endpoint_gateway_to_s3" {
+  service_name    = "com.amazonaws.${data.aws_region.current.name}.s3"
+  vpc_id          = "${module.producer_vpc.vpc_id}"
+  # policy        =
+  route_table_ids  = "${module.producer_vpc.private_route_table_ids}"
+
+  tags = {
+    Name      = "${var.producer}-endpoint-gateway-to-s3"
+    Terraform = true
   }
 }
