@@ -1,3 +1,4 @@
+# https://registry.terraform.io/modules/terraform-aws-modules/security-group/aws
 module "producer_public_security_group" {
   source = "terraform-aws-modules/security-group/aws"
 
@@ -23,7 +24,7 @@ module "producer_private_security_group" {
   description = "${var.producer} private cluster SG"
   vpc_id      = "${module.producer_vpc.vpc_id}"
 
-  # Only accept ssh connection from public subnet
+  # Only accept ssh connection from the public subnet above
   ingress_with_source_security_group_id = [
     {
       rule                     = "ssh-tcp"
@@ -32,7 +33,7 @@ module "producer_private_security_group" {
   ]
   # There is no NAT Gateway and so, instances in private subnet will have no route to internet
   egress_cidr_blocks  = ["0.0.0.0/0"]
-  egress_rules        = ["all-all"]
+  egress_rules        = ["https-443-tcp"]
 
   tags = {
     Name = "${var.producer}-private-cluster-sg"

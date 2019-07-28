@@ -17,3 +17,14 @@ variable "consumer" {
   default     = "consumer"
   description = "Consumer VPC name"
 }
+
+variable "key_pary_name" {
+  default = "personal"
+  description = "This is the kay pair name in the selected region"
+}
+
+variable "producer_s3_bucket_name" {
+  # This must be globally unique bucket name
+  default = "privaelink-202907271837"
+  description = "Producer is the owner of this bucket with full permisions. Consumer will only be able to read from this bucket"
+}

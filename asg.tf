@@ -1,13 +1,13 @@
+# https://registry.terraform.io/modules/terraform-aws-modules/autoscaling/aws
 module "producer_public_asg" {
   source = "terraform-aws-modules/autoscaling/aws"
   name   = "${var.producer}-public"
 
   # Launch configuration
   lc_name = "-lc"
-  # iam_instance_profile = "${aws_iam_instance_profile.producer_asg_profile.id}"
   image_id        = "${data.aws_ami.latest_amzn_ami.id}"
   instance_type   = "t2.small"
-  key_name        = "personal"
+  key_name        = "${var.key_pary_name}"
   security_groups = ["${module.producer_public_security_group.this_security_group_id}"]
 
   # Auto scaling group
@@ -18,14 +18,14 @@ module "producer_public_asg" {
   max_size                  = 1
   desired_capacity          = 1
   wait_for_capacity_timeout = 0
-  # 
-  # tags = [
-  #   {
-  #     key                 = "Environment"
-  #     value               = "${var.producer}-public"
-  #     propagate_at_launch = true
-  #   },
-  # ]
+
+  tags = [
+    {
+      key                 = "Environment"
+      value               = "${var.producer}-public"
+      propagate_at_launch = true
+    },
+  ]
 }
 
 module "producer_private_asg" {
@@ -37,7 +37,7 @@ module "producer_private_asg" {
   iam_instance_profile = "${aws_iam_instance_profile.producer_asg_profile.id}"
   image_id             = "${data.aws_ami.latest_amzn_ami.id}"
   instance_type        = "t2.small"
-  key_name             = "personal"
+  key_name             = "${var.key_pary_name}"
   security_groups      = ["${module.producer_private_security_group.this_security_group_id}"]
 
   # Auto scaling group

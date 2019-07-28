@@ -57,16 +57,3 @@ module "producer_vpc" {
     Terraform   = "true"
   }
 }
-
-# code for the creation of a VPC Endpoint and associating it with VPC route table
-resource "aws_vpc_endpoint" "producer_endpoint_gateway_to_s3" {
-  service_name    = "com.amazonaws.${data.aws_region.current.name}.s3"
-  vpc_id          = "${module.producer_vpc.vpc_id}"
-  # policy        =
-  route_table_ids  = "${module.producer_vpc.private_route_table_ids}"
-
-  tags = {
-    Name      = "${var.producer}-endpoint-gateway-to-s3"
-    Terraform = true
-  }
-}
