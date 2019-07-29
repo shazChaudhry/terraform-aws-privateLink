@@ -51,7 +51,7 @@ See this reference for common commands: https://docs.aws.amazon.com/cli/latest/u
 
 
 ## Cleanup
-- terraform destroy -auto-approve
+- `terraform destroy -auto-approve`
 
 
 # Resrouces:
