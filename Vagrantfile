@@ -29,8 +29,8 @@ Vagrant.configure("2") do |config|
 		end
     node1.vm.provision :shell, inline: $install_terraform
     node1.vm.provision "file", source: "~/.ssh", destination: "$HOME/.ssh"
-    node1.vm.provision "shell", inline: "chmod 600 /home/vagrant/.ssh/*"
+    node1.vm.provision "shell", inline: "chmod 400 /home/vagrant/.ssh/*"
     node1.vm.provision "file", source: "~/.aws", destination: "$HOME/.aws"
-    node1.vm.provision "shell", inline: "chmod 600 /home/vagrant/.aws/*"
+    node1.vm.provision "shell", inline: "chmod 400 /home/vagrant/.aws/*"
 	end
 end

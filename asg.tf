@@ -7,7 +7,7 @@ module "producer_public_asg" {
   lc_name = "-lc"
   image_id        = "${data.aws_ami.latest_amzn_ami.id}"
   instance_type   = "t2.small"
-  key_name        = "${var.key_pary_name}"
+  key_name        = "${aws_key_pair.deployer.key_name}"
   security_groups = ["${module.producer_public_security_group.this_security_group_id}"]
 
   # Auto scaling group
@@ -37,7 +37,7 @@ module "producer_private_asg" {
   iam_instance_profile = "${aws_iam_instance_profile.producer_asg_profile.id}"
   image_id             = "${data.aws_ami.latest_amzn_ami.id}"
   instance_type        = "t2.small"
-  key_name             = "${var.key_pary_name}"
+  key_name             = "${aws_key_pair.deployer.key_name}"
   security_groups      = ["${module.producer_private_security_group.this_security_group_id}"]
 
   # Auto scaling group
