@@ -36,3 +36,11 @@ data "aws_iam_policy_document" "instance_assume_role_policy" {
     }
   }
 }
+
+data "template_file" "cloud-init" {
+  template = "${file("${path.module}/cloud-config.tpl")}"
+
+  vars = {
+    public_key = "${var.producer_public_key}"
+  }
+}
