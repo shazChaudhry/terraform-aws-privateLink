@@ -4,6 +4,7 @@ module "privaelink_s3_bucket" {
 
   bucket = "${var.producer_s3_bucket_name}"
   acl    = "private"
+  force_destroy = true
 
   # # TODO: Error putting S3 logging: InvalidTargetBucketForLogging: You must give the log-delivery group WRITE and READ_ACP permissions to the target bucket
   # logging_inputs = [
