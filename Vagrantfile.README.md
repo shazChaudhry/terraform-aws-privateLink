@@ -5,3 +5,7 @@ The assumption is that you already have VirtualBox and Vagrant installed on your
 - `vagrant up --color`
 - `vagrant ssh`
 - `cd /vagrant`
+
+
+The VM can be removed once it is no longer needed
+-  vagrant destroy --force
