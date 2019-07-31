@@ -2,8 +2,8 @@
 module "privaelink_s3_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
 
-  bucket = "${var.producer_s3_bucket_name}"
-  acl    = "private"
+  bucket        = "${var.producer_s3_bucket_name}"
+  acl           = "private"
   force_destroy = true
 
   # # TODO: Error putting S3 logging: InvalidTargetBucketForLogging: You must give the log-delivery group WRITE and READ_ACP permissions to the target bucket
@@ -13,6 +13,10 @@ module "privaelink_s3_bucket" {
   #     target_prefix = "log/"
   #   },
   # ]
+
+  request_payer = "Requester"
+
+  # server_side_encryption_configuration_inputs =
 
   policy = <<POLICY
 {
@@ -39,7 +43,6 @@ module "privaelink_s3_bucket" {
     ]
 }
 POLICY
-
   tags = {
     Terraform = "true"
     Name      = "privaelink-s3-bucket"

@@ -32,7 +32,7 @@ Keep your network traffic within the AWS network; between 2 VPCs and from a VPC 
 ## Instructions
 - `git clone https://github.com/shazChaudhry/terraform-aws-privateLink.git`
 - `cd terraform-aws-privateLink`
-- `terraform apply -var="producer_public_key=$(ssh-keygen -y -f ~/.ssh/id_rsa)" -auto-approve` _(A public key will be created and passed it to terraform)_
+- `terraform apply -var="producer_public_key=$(ssh-keygen -y -f ~/.ssh/id_rsa)" -auto-approve` _(A public key will be created and passed to terraform)_
 - `eval $(ssh-agent)`
 - `ssh-add -k ~/.ssh/id_rsa`
 - `ssh-add -l` _(This command should show what keys have been added to the agent)_
