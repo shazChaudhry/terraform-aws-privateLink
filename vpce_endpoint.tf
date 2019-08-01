@@ -1,7 +1,9 @@
 # code for the creation of a VPC Endpoint and associating it with private route table
 resource "aws_vpc_endpoint" "producer_endpoint_gateway_to_s3" {
-  service_name     = "com.amazonaws.${data.aws_region.current.name}.s3"
-  vpc_id           = "${module.producer_vpc.vpc_id}"
+  route_table_ids = "${module.producer_vpc.private_route_table_ids}"
+  service_name    = "com.amazonaws.${data.aws_region.current.name}.s3"
+  vpc_id          = "${module.producer_vpc.vpc_id}"
+
   # https://docs.aws.amazon.com/vpc/latest/userguide/vpce-gateway.html
   policy = <<POLICY
   {
@@ -17,8 +19,6 @@ resource "aws_vpc_endpoint" "producer_endpoint_gateway_to_s3" {
     "Version": "2008-10-17"
   }
 POLICY
-
-  route_table_ids  = "${module.producer_vpc.private_route_table_ids}"
 
   tags = {
     Name      = "${var.producer}-endpoint-gateway-to-s3"
