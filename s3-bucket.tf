@@ -28,16 +28,16 @@ module "privaelink_s3_bucket" {
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Effect": "Deny",
+            "Sid": "Access-to-specific-VPCE-only",
             "Principal": {
                 "AWS": "${aws_iam_role.producer_asg_role.arn}"
             },
             "Action": [
                 "s3:GetObject",
-                "s3:ListBucket",
                 "s3:DeleteObject",
                 "s3:PutObject"
             ],
+            "Effect": "Deny",
             "Resource": ["${local.s3_buckets}"],
             "Condition": {
                 "StringNotEquals": {

@@ -10,9 +10,9 @@ resource "aws_vpc_endpoint" "producer_endpoint_gateway_to_s3" {
     "Statement": [
       {
         "Sid": "Access-to-bucket-via-privatelink",
+        "Effect": "Allow",
         "Principal": "*",
         "Action": "s3:*",
-        "Effect": "Allow",
         "Resource": ["${local.s3_buckets}"]
       }
     ],

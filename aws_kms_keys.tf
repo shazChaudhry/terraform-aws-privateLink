@@ -1,5 +1,5 @@
 resource "aws_kms_alias" "producer_kms_key" {
-  name          = "alias/producer_kms_key"
+  name          = "alias/${var.producer}_kms_key"
   target_key_id = "${aws_kms_key.producer_kms_key.key_id}"
 }
 
