@@ -1,5 +1,5 @@
 variable "region" {
-  description = "AWS London region to launch servers"
+  description = "AWS region to launch resources in"
 }
 
 variable "credentials" {
