@@ -72,10 +72,10 @@ See this reference for common commands: https://docs.aws.amazon.com/cli/latest/u
 
 # Resrouces
 These resources have helped me learn about AWS PrivateLinks:
-- S3 encryption with KMS Managed Keys: https://www.youtube.com/watch?v=jZYkJf-9yXI
-- Import your Custom Key into KMS | Encrypt data with custom key: https://www.youtube.com/watch?v=VIWMezx8XiQ
-- AWS Key Management Service. Customer Master Key, Data Key, Envelope Encryption _(KnowledgeIndia - AWS Tutorials)_: https://www.youtube.com/watch?v=fmqzUCtC6Aw
-- Overview of Managing Access: https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-overview.html
-- Gateway VPC Endpoints (includes a good diagram): https://docs.aws.amazon.com/vpc/latest/userguide/vpce-gateway.html
-- Endpoints for Amazon S3: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints-s3.html
-- IAM Policies and Bucket Policies and ACLs blog: https://aws.amazon.com/blogs/security/iam-policies-and-bucket-policies-and-acls-oh-my-controlling-access-to-s3-resources/
+- [S3 encryption with KMS Managed Keys](https://www.youtube.com/watch?v=jZYkJf-9yXI)
+- [Import your Custom Key into KMS; Encrypt data with custom key](https://www.youtube.com/watch?v=VIWMezx8XiQ)
+- [AWS Key Management Service. Customer Master Key, Data Key, Envelope Encryption; KnowledgeIndia AWS Tutorials](https://www.youtube.com/watch?v=fmqzUCtC6Aw)
+- [Overview of Managing Access](https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-overview.html)
+- [Gateway VPC Endpoints; includes a good diagram](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-gateway.html)
+- [Endpoints for Amazon S3](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints-s3.html)
+- [IAM Policies and Bucket Policies and ACLs blog](https://aws.amazon.com/blogs/security/iam-policies-and-bucket-policies-and-acls-oh-my-controlling-access-to-s3-resources/)
