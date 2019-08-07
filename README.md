@@ -1,8 +1,8 @@
 # VPC Endpoint for Amazon S3
 The purpose here is to write code in terraform that will provision an infrastructure as shown in the diagram below. It is made up of:
 - A VPC that has one private and one public subnet
- - Only the public instance has access to internet. This instance acts as a jump box to the private instance
- - The private instance does not have access to internet. This instance connects to S3 via a VPC Endpoint
+  - Only the public instance has access to internet. This instance acts as a jump box to the private instance
+  - The private instance does not have access to internet. This instance connects to S3 via a VPC Endpoint
 - VPC Endpoint provides private access to S3. Traffic between private instance and S3:
   - does not go through open internet
   - does not leave Amazon network
@@ -74,7 +74,7 @@ See this reference for common commands: https://docs.aws.amazon.com/cli/latest/u
 These resources have helped me learn about AWS PrivateLinks:
 - S3 encryption with KMS Managed Keys: https://www.youtube.com/watch?v=jZYkJf-9yXI
 - Import your Custom Key into KMS | Encrypt data with custom key: https://www.youtube.com/watch?v=VIWMezx8XiQ
-- AWS Key Management Service - Customer Master Key, Data Key, Envelope Encryption _(KnowledgeIndia - AWS Tutorials)_: https://www.youtube.com/watch?v=fmqzUCtC6Aw
+- AWS Key Management Service. Customer Master Key, Data Key, Envelope Encryption _(KnowledgeIndia - AWS Tutorials)_: https://www.youtube.com/watch?v=fmqzUCtC6Aw
 - Overview of Managing Access: https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-overview.html
 - Gateway VPC Endpoints (includes a good diagram): https://docs.aws.amazon.com/vpc/latest/userguide/vpce-gateway.html
 - Endpoints for Amazon S3: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints-s3.html
