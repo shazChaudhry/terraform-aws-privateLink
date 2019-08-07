@@ -1,4 +1,20 @@
 # https://registry.terraform.io/modules/terraform-aws-modules/s3-bucket/aws
+
+resource "aws_s3_bucket" "log_bucket" {
+  # The name of the bucket that will receive the log objects
+  bucket = "log-${var.producer_s3_bucket_name}"
+  acl = "log-delivery-write"
+}
+
+# resource "aws_s3_bucket_public_access_block" "log_bucket_bucket_public_block" {
+#   bucket = "${aws_s3_bucket.log_bucket.id}"
+#
+#   block_public_acls       = true
+#   block_public_policy     = true
+#   ignore_public_acls      = true
+#   restrict_public_buckets = true
+# }
+
 module "privaelink_s3_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
 
@@ -10,7 +26,14 @@ module "privaelink_s3_bucket" {
   logging_inputs = [
     {
       target_bucket = "${aws_s3_bucket.log_bucket.id}"
-      target_prefix = "log/"
+      target_prefix = "access-logs/"
+    },
+  ]
+
+  versioning_inputs = [
+    {
+      enabled    = true
+      mfa_delete = null
     },
   ]
 
@@ -23,6 +46,17 @@ module "privaelink_s3_bucket" {
     },
   ]
 
+  tags = {
+    Terraform = "true"
+    Name = "privaelink-s3-bucket"
+  }
+}
+
+resource "aws_s3_bucket_policy" "producer_bucket_policy" {
+  bucket = "${module.privaelink_s3_bucket.id}"
+
+  depends_on = [ "aws_s3_bucket_public_access_block.producer_bucket_public_block" ]
+
   policy = <<POLICY
 {
     "Version": "2012-10-17",
@@ -33,6 +67,8 @@ module "privaelink_s3_bucket" {
                 "AWS": "${aws_iam_role.producer_asg_role.arn}"
             },
             "Action": [
+                "s3:GetBucketLocation",
+                "s3:ListBucket",
                 "s3:GetObject",
                 "s3:DeleteObject",
                 "s3:PutObject"
@@ -48,15 +84,13 @@ module "privaelink_s3_bucket" {
     ]
 }
 POLICY
-
-  tags = {
-    Terraform = "true"
-    Name      = "privaelink-s3-bucket"
-  }
 }
 
-resource "aws_s3_bucket" "log_bucket" {
-  # The name of the bucket that will receive the log objects
-  bucket = "log-${var.producer_s3_bucket_name}"
-  acl    = "log-delivery-write"
+resource "aws_s3_bucket_public_access_block" "producer_bucket_public_block" {
+  bucket = "${module.privaelink_s3_bucket.id}"
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }

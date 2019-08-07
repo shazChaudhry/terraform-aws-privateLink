@@ -4,8 +4,9 @@ resource "aws_kms_alias" "producer_kms_key" {
 }
 
 resource "aws_kms_key" "producer_kms_key" {
-  description             = "keys for used by producer"
+  description             = "keys for used by ${var.producer} for SSE of buckets"
   deletion_window_in_days = 7
+  enable_key_rotation     = true
 
   policy = <<EOF
   {
